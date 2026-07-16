@@ -1,0 +1,64 @@
+/* ======================================================
+   ERROR 404
+   ====================================================== */
+.error-404 {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+}
+
+.error-404__container {
+    max-width: 32rem;
+    text-align: center;
+}
+
+.error-404__code {
+    display: block;
+    font-family: var(--fuenteHeading);
+    font-size: 6rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+}
+
+.error-404__title {
+    margin-top: 1rem;
+    font-family: var(--fuenteHeading);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+}
+
+.error-404__text {
+    margin-top: 0.75rem;
+    font-size: 1rem;
+    color: var(--gris-texto);
+    line-height: 1.6;
+}
+
+.error-404__actions {
+    margin-top: 2rem;
+}
+
+.error-404__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-primary);
+    color: var(--blanco);
+    font-weight: 700;
+    padding: 0.85rem 1.75rem;
+    border-radius: 8px;
+    transition: opacity 0.2s;
+}
+
+.error-404__button:hover {
+    opacity: 0.9;
+}
+
+.error-404__icon {
+    width: 1rem;
+    height: 1rem;
+}
