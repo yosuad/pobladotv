@@ -18,11 +18,15 @@ document.addEventListener('DOMContentLoaded', () => createIcons({ icons }));
    Reset, variables CSS, header, footer (layout public)
    ============================================================ */
 import '../css/app.css';
+import '../css/admin/admin.css';
+import '../css/admin/noticias/index.css';
+import '../css/admin/noticias/edit.css';
 
 /* ============================================================
    ESTILOS POR PÁGINA
    Un import por cada vista que tenga su propio CSS
    ============================================================ */
-import '../css/pages/index.css';        // Home
+import '../css/pages/index.css';         // Home
 import '../css/pages/noticia.css';       // Detalle de noticia
 import '../css/pages/error-404.css';     // Página 404
+import '../css/pages/auth.css';          // Login, registro, recuperar contraseña

@@ -287,3 +287,55 @@ ul { list-style: none; }
 .site-footer__credit-link:hover {
     text-decoration: underline;
 }
+
+
+/* ======================================================
+   ADMIN BAR (solo visible logueado, en sitio público)
+   ====================================================== */
+.admin-bar {
+    background-color: var(--color-secondary);
+    padding: 0.6rem 0;
+}
+
+.admin-bar__container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.admin-bar__text {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--blanco);
+    opacity: 0.85;
+}
+
+.admin-bar__icon {
+    width: 0.9rem;
+    height: 0.9rem;
+    color: var(--color-accent);
+}
+
+.admin-bar__link {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.admin-bar__link:hover {
+    text-decoration: underline;
+}
+
+.admin-bar__link-icon {
+    width: 0.85rem;
+    height: 0.85rem;
+}

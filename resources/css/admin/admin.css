@@ -1,0 +1,291 @@
+/* ======================================================
+   ADMIN LAYOUT — Sidebar + Topbar + Footer
+   ====================================================== */
+.app-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ---- Sidebar ---- */
+.sidenav {
+    width: 16rem;
+    flex-shrink: 0;
+    background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidenav__header {
+    padding: 0 0.5rem 1.5rem;
+}
+
+.sidenav__logo {
+    max-height: 2.5rem;
+    width: auto;
+}
+
+.sidenav__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.sidenav__link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.sidenav__link:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--blanco);
+}
+
+.sidenav__link--active {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--blanco);
+}
+
+.sidenav__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+}
+
+.sidenav__icon svg {
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+/* ---- Contenido principal ---- */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--gris-fondo);
+}
+
+/* ---- Topbar ---- */
+.page-header {
+    background-color: var(--blanco);
+    border-bottom: 1px solid var(--gris-borde);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-header__title {
+    font-family: var(--fuenteHeading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+}
+
+.page-header__user {
+    position: relative;
+}
+
+.page-header__user-button {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+}
+
+.page-header__user-icon {
+    width: 1rem;
+    height: 1rem;
+    color: var(--gris-texto);
+}
+
+.page-header__dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5rem);
+    background-color: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 12rem;
+    padding: 0.4rem;
+    z-index: 50;
+}
+
+.page-header__dropdown-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.page-header__dropdown-link:hover {
+    background-color: var(--gris-fondo);
+}
+
+.page-header__dropdown-link--danger {
+    color: var(--status-cerrado);
+}
+
+.page-header__dropdown-icon {
+    width: 0.95rem;
+    height: 0.95rem;
+}
+
+/* ---- Body ---- */
+.page-body {
+    flex: 1;
+    padding: 2rem;
+}
+
+/* ---- Footer admin ---- */
+.admin-footer {
+    padding: 1.25rem 2rem;
+    border-top: 1px solid var(--gris-borde);
+}
+
+.admin-footer__text {
+    font-size: 0.8rem;
+    color: var(--gris-texto);
+    text-align: center;
+}
+
+.admin-footer__link {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.admin-footer__link:hover {
+    text-decoration: underline;
+}
+
+/* ======================================================
+   DASHBOARD — Estadísticas y accesos rápidos
+   ====================================================== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--blanco);
+    border-radius: 10px;
+    padding: 1.25rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.stat-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.stat-card__icon svg {
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+.stat-card__icon--success {
+    background-color: #ecfdf5;
+    color: var(--status-activo);
+}
+
+.stat-card__icon--muted {
+    background-color: var(--gris-fondo);
+    color: var(--gris-texto);
+}
+
+.stat-card__value {
+    display: block;
+    font-family: var(--fuenteHeading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+}
+
+.stat-card__label {
+    font-size: 0.85rem;
+    color: var(--gris-texto);
+}
+
+/* ---- Accesos rápidos ---- */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 1.25rem;
+}
+
+.quick-action-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background-color: var(--blanco);
+    border-radius: 10px;
+    padding: 2rem 1rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.quick-action-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.quick-action-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 10px;
+    background-color: var(--gris-fondo);
+    color: var(--color-primary);
+}
+
+.quick-action-card__icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.quick-action-card__label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+}

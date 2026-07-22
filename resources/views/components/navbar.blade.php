@@ -1,3 +1,5 @@
+@include('components.admin-bar')
+
 <header class="site-header">
     <nav class="site-header__nav">
         <a href="{{ url('/') }}" class="site-header__logo">
