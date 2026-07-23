@@ -8,28 +8,36 @@
 <div class="ticker">
     <div class="ticker__wrapper">
         <span class="ticker__badge">Último minuto</span>
-        <p class="ticker__text">La Gran Feria Cultural reúne a miles en la plaza principal</p>
+        <p class="ticker__text">{{ $principal?->titulo ?? 'Bienvenido a PobladoTV' }}</p>
     </div>
 </div>
 
 {{-- Portada: feature + sidebar --}}
 <section class="portada">
     <div class="portada__feature">
-        <article class="feature-card">
-            <img src="{{ asset('img/placeholder-noticia.jpg') }}" alt="" class="feature-card__image">
-            <div class="feature-card__body">
-                <span class="feature-card__kicker">Cultura</span>
-                <h2 class="feature-card__title">
-                    <a href="#">La Gran Feria Cultural reúne a miles en la plaza principal</a>
-                </h2>
-                <p class="feature-card__excerpt">Tres días de música, gastronomía y tradición transformaron el centro del pueblo en una fiesta para todas las edades.</p>
-                <div class="feature-card__meta">
-                    <span class="feature-card__author">Redacción Poblado TV</span>
-                    <span class="feature-card__separator">&middot;</span>
-                    <span class="feature-card__date">4 de julio, 2026</span>
+        @if ($principal)
+            <article class="feature-card">
+                <img src="{{ $principal->imagen_destacada ? asset('uploads/' . $principal->imagen_destacada) : asset('img/placeholder-noticia.jpg') }}" alt="" class="feature-card__image">
+                <div class="feature-card__body">
+                    <span class="feature-card__kicker">{{ $principal->categoria->nombre }}</span>
+                    <h2 class="feature-card__title">
+                        <a href="#">{{ $principal->titulo }}</a>
+                    </h2>
+                    <p class="feature-card__excerpt">{{ $principal->extracto }}</p>
+                    <div class="feature-card__meta">
+                        <span class="feature-card__author">{{ $principal->autor->name }}</span>
+                        <span class="feature-card__separator">&middot;</span>
+                        <span class="feature-card__date">{{ $principal->published_at?->translatedFormat('d \d\e F, Y') }}</span>
+                    </div>
                 </div>
-            </div>
-        </article>
+            </article>
+        @else
+            <article class="feature-card">
+                <div class="feature-card__body">
+                    <p class="feature-card__excerpt">Aún no hay ninguna noticia marcada como principal.</p>
+                </div>
+            </article>
+        @endif
     </div>
 
     <aside class="portada__sidebar">
@@ -37,18 +45,14 @@
             <h3 class="ranking__heading-title">Lo más leído</h3>
         </div>
         <div class="ranking ranking--primary">
-            <div class="ranking__item">
-                <span class="ranking__number">01</span>
-                <a href="#" class="ranking__link">El Concejo aprueba el nuevo plan de desarrollo comunitario</a>
-            </div>
-            <div class="ranking__item">
-                <span class="ranking__number">02</span>
-                <a href="#" class="ranking__link">El equipo juvenil clasifica a la final regional</a>
-            </div>
-            <div class="ranking__item">
-                <span class="ranking__number">03</span>
-                <a href="#" class="ranking__link">El mercado campesino impulsa la economía local</a>
-            </div>
+            @forelse ($masLeidas as $index => $noticia)
+                <div class="ranking__item">
+                    <span class="ranking__number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                    <a href="#" class="ranking__link">{{ $noticia->titulo }}</a>
+                </div>
+            @empty
+                <p class="ranking__empty">Todavía no hay noticias.</p>
+            @endforelse
         </div>
 
         <div class="ranking__heading ranking__heading--accent">
@@ -57,15 +61,7 @@
         <div class="ranking ranking--accent">
             <div class="ranking__item">
                 <span class="ranking__number">01</span>
-                <a href="#" class="ranking__link">El Concejo aprueba el nuevo plan de desarrollo comunitario</a>
-            </div>
-            <div class="ranking__item">
-                <span class="ranking__number">02</span>
-                <a href="#" class="ranking__link">El equipo juvenil clasifica a la final regional</a>
-            </div>
-            <div class="ranking__item">
-                <span class="ranking__number">03</span>
-                <a href="#" class="ranking__link">El mercado campesino impulsa la economía local</a>
+                <a href="#" class="ranking__link">Próximamente</a>
             </div>
         </div>
     </aside>
@@ -82,70 +78,23 @@
     </div>
 
     <div class="noticias__grid">
-        <article class="article-card">
-            <img src="{{ asset('img/placeholder-noticia.jpg') }}" alt="" class="article-card__image">
-            <span class="article-card__kicker">Actualidad</span>
-            <div class="article-card__body">
-                <h3 class="article-card__title">
-                    <a href="#">El Concejo aprueba el nuevo plan de desarrollo comunitario</a>
-                </h3>
-                <p class="article-card__excerpt">La iniciativa prioriza infraestructura, educación y espacios públicos para lo...</p>
-                <div class="article-card__meta">
-                    <span>2 de julio, 2026</span>
-                    <span class="article-card__read">
-                        <i data-lucide="clock" class="article-card__icon"></i> 4 min
-                    </span>
+        @forelse ($ultimasNoticias as $noticia)
+            <article class="article-card">
+                <img src="{{ $noticia->imagen_miniatura ? asset('uploads/' . $noticia->imagen_miniatura) : asset('img/placeholder-noticia.jpg') }}" alt="" class="article-card__image">
+                <span class="article-card__kicker">{{ $noticia->categoria->nombre }}</span>
+                <div class="article-card__body">
+                    <h3 class="article-card__title">
+                        <a href="#">{{ $noticia->titulo }}</a>
+                    </h3>
+                    <p class="article-card__excerpt">{{ Str::limit($noticia->extracto, 90) }}</p>
+                    <div class="article-card__meta">
+                        <span>{{ $noticia->published_at?->translatedFormat('d \d\e F, Y') }}</span>
+                    </div>
                 </div>
-            </div>
-        </article>
-        <article class="article-card">
-            <img src="{{ asset('img/placeholder-noticia.jpg') }}" alt="" class="article-card__image">
-            <span class="article-card__kicker">Deportes</span>
-            <div class="article-card__body">
-                <h3 class="article-card__title">
-                    <a href="#">El equipo juvenil clasifica a la final regional</a>
-                </h3>
-                <p class="article-card__excerpt">Con una destacada actuación, los jóvenes deportistas del pueblo llegan...</p>
-                <div class="article-card__meta">
-                    <span>1 de julio, 2026</span>
-                    <span class="article-card__read">
-                        <i data-lucide="clock" class="article-card__icon"></i> 3 min
-                    </span>
-                </div>
-            </div>
-        </article>
-        <article class="article-card">
-            <img src="{{ asset('img/placeholder-noticia.jpg') }}" alt="" class="article-card__image">
-            <span class="article-card__kicker">Economía</span>
-            <div class="article-card__body">
-                <h3 class="article-card__title">
-                    <a href="#">El mercado campesino impulsa la economía local</a>
-                </h3>
-                <p class="article-card__excerpt">Productores de la zona ofrecen alimentos frescos directamente al...</p>
-                <div class="article-card__meta">
-                    <span>29 de junio, 2026</span>
-                    <span class="article-card__read">
-                        <i data-lucide="clock" class="article-card__icon"></i> 4 min
-                    </span>
-                </div>
-            </div>
-        </article>
-        <article class="article-card">
-            <img src="{{ asset('img/placeholder-noticia.jpg') }}" alt="" class="article-card__image">
-            <span class="article-card__kicker">Cultura</span>
-            <div class="article-card__body">
-                <h3 class="article-card__title">
-                    <a href="#">Noche de conciertos celebra el talento local</a>
-                </h3>
-                <p class="article-card__excerpt">Bandas emergentes del pueblo subieron al escenario en una velada...</p>
-                <div class="article-card__meta">
-                    <span>27 de junio, 2026</span>
-                    <span class="article-card__read">
-                        <i data-lucide="clock" class="article-card__icon"></i> 3 min
-                    </span>
-                </div>
-            </div>
-        </article>
+            </article>
+        @empty
+            <p>Todavía no hay noticias publicadas.</p>
+        @endforelse
     </div>
 </section>
 
@@ -186,7 +135,7 @@
                     <img src="{{ asset('img/aliados/sura.png') }}" alt="Sura">
                 </div>
             </div>
-          
+
         </div>
     </div>
 </section>

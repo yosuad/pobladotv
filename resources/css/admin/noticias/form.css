@@ -91,6 +91,11 @@
     line-height: 1.6;
 }
 
+.form-group__error {
+    font-size: 0.78rem;
+    color: var(--status-cerrado);
+}
+
 /* ---- Slug ---- */
 .slug-field {
     display: flex;
@@ -255,6 +260,67 @@
 
 .tags-input__field:focus {
     outline: none;
+}
+
+/* ======================================================
+   EJEMPLO DE IMAGEN (referencia de dimensiones)
+   ====================================================== */
+.image-example {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background-color: var(--gris-fondo);
+    border: 1px dashed var(--gris-borde);
+    border-radius: 8px;
+}
+
+.image-example__preview {
+    flex-shrink: 0;
+    width: 6rem;
+    height: 3.2rem;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.image-example__preview--small {
+    height: 3.4rem;
+}
+
+.image-example__caption {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-size: 0.75rem;
+}
+
+.image-example__caption strong {
+    color: var(--color-secondary);
+    font-size: 0.8rem;
+}
+
+.image-example__caption span {
+    color: var(--gris-texto);
+    line-height: 1.4;
+}
+
+.image-example__download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    width: fit-content;
+}
+
+.image-example__download svg {
+    width: 0.8rem;
+    height: 0.8rem;
+}
+
+.image-example__download:hover {
+    text-decoration: underline;
 }
 
 /* ---- Responsive ---- */

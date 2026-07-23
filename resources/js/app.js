@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => createIcons({ icons }));
 import '../css/app.css';
 import '../css/admin/admin.css';
 import '../css/admin/noticias/index.css';
-import '../css/admin/noticias/edit.css';
+import '../css/admin/noticias/form.css';
 
 /* ============================================================
    ESTILOS POR PÁGINA

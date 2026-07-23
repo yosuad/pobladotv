@@ -17,60 +17,54 @@
         {{-- Sidebar --}}
         <nav class="sidenav">
             <div class="sidenav__header">
-                <img src="{{ asset('img/logo-footer.png') }}" alt="PobladoTV" class="sidenav__logo">
+                <a href="{{ url('/') }}">
+                    <img src="{{ asset('img/logo-footer.png') }}" alt="PobladoTV" class="sidenav__logo">
+                </a>
             </div>
 
             <ul class="sidenav__nav">
                 <li class="sidenav__item">
-                    <a href="{{ route('admin.dashboard') }}" class="sidenav__link {{ request()->routeIs('admin.dashboard') ? 'sidenav__link--active' : '' }}">
-                        <span class="sidenav__icon"><i data-lucide="layout-dashboard"></i></span>
-                        <span class="sidenav__link-text">Dashboard</span>
-                    </a>
-                </li>
-                <li class="sidenav__item">
-                    <a href="#" class="sidenav__link">
+                    <a href="{{ route('admin.noticias.index') }}" class="sidenav__link {{ request()->routeIs('admin.noticias.*') ? 'sidenav__link--active' : '' }}">
                         <span class="sidenav__icon"><i data-lucide="newspaper"></i></span>
                         <span class="sidenav__link-text">Noticias</span>
                     </a>
                 </li>
                 <li class="sidenav__item">
-                    <a href="#" class="sidenav__link">
+                    <a href="#" class="sidenav__link {{ request()->routeIs('admin.lugares.*') ? 'sidenav__link--active' : '' }}">
                         <span class="sidenav__icon"><i data-lucide="map-pin"></i></span>
                         <span class="sidenav__link-text">Lugares</span>
                     </a>
                 </li>
                 <li class="sidenav__item">
-                    <a href="#" class="sidenav__link">
+                    <a href="#" class="sidenav__link {{ request()->routeIs('admin.eventos.*') ? 'sidenav__link--active' : '' }}">
                         <span class="sidenav__icon"><i data-lucide="calendar"></i></span>
                         <span class="sidenav__link-text">Eventos</span>
                     </a>
                 </li>
                 <li class="sidenav__item">
-                    <a href="#" class="sidenav__link">
+                    <a href="#" class="sidenav__link {{ request()->routeIs('admin.aliados.*') ? 'sidenav__link--active' : '' }}">
                         <span class="sidenav__icon"><i data-lucide="handshake"></i></span>
                         <span class="sidenav__link-text">Aliados</span>
                     </a>
                 </li>
                 <li class="sidenav__item">
-                    <a href="#" class="sidenav__link">
+                    <a href="#" class="sidenav__link {{ request()->routeIs('admin.procesos.*') ? 'sidenav__link--active' : '' }}">
                         <span class="sidenav__icon"><i data-lucide="clipboard-list"></i></span>
                         <span class="sidenav__link-text">Procesos y convocatorias</span>
                     </a>
                 </li>
                 <li class="sidenav__item">
-                    <a href="#" class="sidenav__link">
+                    <a href="#" class="sidenav__link {{ request()->routeIs('admin.imagenes.*') ? 'sidenav__link--active' : '' }}">
                         <span class="sidenav__icon"><i data-lucide="image"></i></span>
                         <span class="sidenav__link-text">Editar imágenes</span>
                     </a>
-                </li>                
+                </li>
                 <li class="sidenav__item">
-                    <a href="#" class="sidenav__link {{ request()->routeIs('admin.usuarios.*') ? 'sidenav__link--active' : '' }}">
+                    <a href="{{ route('admin.usuarios.index') }}" class="sidenav__link {{ request()->routeIs('admin.usuarios.*') ? 'sidenav__link--active' : '' }}">
                         <span class="sidenav__icon"><i data-lucide="users"></i></span>
                         <span class="sidenav__link-text">Usuarios</span>
                     </a>
                 </li>
-
-
 
             </ul>
         </nav>
@@ -80,7 +74,7 @@
 
             {{-- Topbar --}}
             <header class="page-header">
-                <h1 class="page-header__title">@yield('title', 'Dashboard')</h1>
+                <h1 class="page-header__title">@yield('title', 'Noticias')</h1>
 
                 <div class="page-header__user" x-data="{ open: false }">
                     <button @click="open = !open" class="page-header__user-button">

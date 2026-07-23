@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\NoticiaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,37 +14,64 @@ use Illuminate\Support\Facades\Route;
 | - Viven bajo la URL /admin/... (gracias al prefix('admin'))
 | - Sus nombres empiezan con "admin." (gracias al name('admin.'))
 |
-| Ejemplo: la ruta de abajo con ->name('dashboard') se convierte
-| en el nombre real "admin.dashboard" y la URL real "/admin/dashboard"
+| Ejemplo: la ruta de abajo con ->name('noticias.index') se convierte
+| en el nombre real "admin.noticias.index" y la URL real "/admin/noticias"
 */
 Route::middleware(['auth', 'verified'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
 
-        // Dashboard — pantalla principal del panel admin
-        // Nombre completo de esta ruta: admin.dashboard
-        // URL completa: /admin/dashboard
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('dashboard');
+        /*
+        |----------------------------------------------------------------
+        | Noticias
+        |----------------------------------------------------------------
+        | Listado:  GET  /admin/noticias                   -> admin.noticias.index
+        | Nueva:    GET  /admin/noticias/nueva              -> admin.noticias.create
+        | Guardar:  POST /admin/noticias                    -> admin.noticias.store
+        | Editar:   GET  /admin/noticias/{noticia}/editar   -> admin.noticias.edit
+        |
+        | {noticia} usa route model binding: Laravel busca automáticamente
+        | la Noticia por su id y la inyecta en el controlador.
+        |
+        | Importante: la ruta "nueva" debe ir ANTES de "{noticia}/editar"
+        | para que Laravel no confunda "nueva" con un id de noticia.
+        */
+        Route::get('/noticias', [NoticiaController::class, 'index'])
+            ->name('noticias.index');
 
+        Route::get('/noticias/nueva', [NoticiaController::class, 'create'])
+            ->name('noticias.create');
 
-        Route::get('/noticias', function () {
-    return view('admin.noticias.index');
-})->name('noticias.index');
+        Route::post('/noticias', [NoticiaController::class, 'store'])
+            ->name('noticias.store');
 
+        Route::get('/noticias/{noticia}/editar', [NoticiaController::class, 'edit'])
+            ->name('noticias.edit');
 
-Route::get('/noticias/editar', function () {
-    return view('admin.noticias.edit');
-})->name('noticias.edit');
-
+        /*
+        |----------------------------------------------------------------
+        | Usuarios
+        |----------------------------------------------------------------
+        | Listado: GET /admin/usuarios -> admin.usuarios.index
+        |
+        | Temporal: closure directo mientras no armamos el
+        | UsuarioController real (crear Editor/Autor/Colaborador).
+        | Solo debería ser accesible para el rol Administrador —
+        | pendiente agregar middleware 'role:Administrador' aquí
+        | cuando conectemos Spatie a las rutas.
+        */
+        Route::get('/usuarios', function () {
+            return view('admin.usuarios.index');
+        })->name('usuarios.index');
 
         // Aquí abajo irán, en los próximos pasos:
-        // - CRUD de noticias (admin.noticias.index, admin.noticias.create, etc.)
+        // - update() para guardar cambios del formulario de edición de noticias
+        // - destroy() para eliminar noticias
         // - CRUD de categorías
         // - CRUD de etiquetas
-        // - Gestión de usuarios (crear Editor/Autor/Colaborador)
+        // - CRUD real de usuarios (crear Editor/Autor/Colaborador)
+        // - CRUD de Lugares, Eventos, Aliados, Procesos y convocatorias
 
     });
 
